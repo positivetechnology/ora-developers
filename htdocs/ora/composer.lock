@@ -4,8 +4,42 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c8e7f5d60759fb161aa84208bdf68ff3",
+    "content-hash": "f87b9bd8c19c60b67b6ae057bac39be0",
     "packages": [
+        {
+            "name": "asyncphp/doorman",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asyncphp/doorman.git",
+                "reference": "144561a38bf9b663b27af606b4562b3a5b6e191c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asyncphp/doorman/zipball/144561a38bf9b663b27af606b4562b3a5b6e191c",
+                "reference": "144561a38bf9b663b27af606b4562b3a5b6e191c",
+                "shasum": ""
+            },
+            "require": {
+                "jeremeamia/superclosure": "^2.0",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AsyncPHP\\Doorman\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Child process management",
+            "time": "2015-12-06T21:13:18+00:00"
+        },
         {
             "name": "composer/ca-bundle",
             "version": "1.1.1",
@@ -369,6 +403,64 @@
                 "watermark"
             ],
             "time": "2018-05-29T14:19:03+00:00"
+        },
+        {
+            "name": "jeremeamia/SuperClosure",
+            "version": "2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeremeamia/super_closure.git",
+                "reference": "5707d5821b30b9a07acfb4d76949784aaa0e9ce9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeremeamia/super_closure/zipball/5707d5821b30b9a07acfb4d76949784aaa0e9ce9",
+                "reference": "5707d5821b30b9a07acfb4d76949784aaa0e9ce9",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^1.2|^2.0|^3.0|^4.0",
+                "php": ">=5.4",
+                "symfony/polyfill-php56": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SuperClosure\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Lindblom",
+                    "email": "jeremeamia@gmail.com",
+                    "homepage": "https://github.com/jeremeamia",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Serialize Closure objects, including their context and binding",
+            "homepage": "https://github.com/jeremeamia/super_closure",
+            "keywords": [
+                "closure",
+                "function",
+                "lambda",
+                "parser",
+                "serializable",
+                "serialize",
+                "tokenizer"
+            ],
+            "time": "2018-03-21T22:21:57+00:00"
         },
         {
             "name": "league/flysystem",
@@ -1369,63 +1461,6 @@
             "time": "2018-02-14T20:07:02+00:00"
         },
         {
-            "name": "silverstripe/errorpage",
-            "version": "1.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/silverstripe/silverstripe-errorpage.git",
-                "reference": "950d13bc7fdc6f0b972fe2de3462cc005d85dfa4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-errorpage/zipball/950d13bc7fdc6f0b972fe2de3462cc005d85dfa4",
-                "reference": "950d13bc7fdc6f0b972fe2de3462cc005d85dfa4",
-                "shasum": ""
-            },
-            "require": {
-                "silverstripe/cms": "^4@dev",
-                "silverstripe/vendor-plugin": "^1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~5.7"
-            },
-            "type": "silverstripe-vendormodule",
-            "extra": {
-                "branch-alias": {
-                    "1.x-dev": "1.2.x-dev",
-                    "dev-master": "2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "SilverStripe\\ErrorPage\\": "src/",
-                    "SilverStripe\\ErrorPage\\Tests\\": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "SilverStripe",
-                    "homepage": "http://silverstripe.com"
-                },
-                {
-                    "name": "The SilverStripe Community",
-                    "homepage": "http://silverstripe.org"
-                }
-            ],
-            "description": "ErrorPage component for SilverStripe CMS",
-            "homepage": "http://silverstripe.org",
-            "keywords": [
-                "error",
-                "errorpage",
-                "silverstripe"
-            ],
-            "time": "2018-06-19T04:50:07+00:00"
-        },
-        {
             "name": "silverstripe/framework",
             "version": "4.1.2",
             "source": {
@@ -1581,136 +1616,6 @@
             "time": "2018-05-30T03:52:48+00:00"
         },
         {
-            "name": "silverstripe/recipe-cms",
-            "version": "1.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/silverstripe/recipe-cms.git",
-                "reference": "b517a7a797a70f084cbd442967a376c9ba46002b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/recipe-cms/zipball/b517a7a797a70f084cbd442967a376c9ba46002b",
-                "reference": "b517a7a797a70f084cbd442967a376c9ba46002b",
-                "shasum": ""
-            },
-            "require": {
-                "silverstripe/admin": "1.1.2@stable",
-                "silverstripe/asset-admin": "1.1.2@stable",
-                "silverstripe/campaign-admin": "1.1.2@stable",
-                "silverstripe/cms": "4.1.2@stable",
-                "silverstripe/errorpage": "1.1.2@stable",
-                "silverstripe/graphql": "1.1.2@stable",
-                "silverstripe/recipe-core": "1.1.2@stable",
-                "silverstripe/recipe-plugin": "^1",
-                "silverstripe/reports": "4.1.2@stable",
-                "silverstripe/siteconfig": "4.1.2@stable",
-                "silverstripe/versioned": "1.1.2@stable"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.7"
-            },
-            "type": "silverstripe-recipe",
-            "extra": {
-                "project-files": [
-                    "mysite/code/*"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "SilverStripe recipe for fully featured page and asset content editing",
-            "homepage": "http://silverstripe.org",
-            "time": "2018-06-19T05:14:08+00:00"
-        },
-        {
-            "name": "silverstripe/recipe-core",
-            "version": "1.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/silverstripe/recipe-core.git",
-                "reference": "b314e90540a6e5ab9162d0738c95f5d8617c91ee"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/recipe-core/zipball/b314e90540a6e5ab9162d0738c95f5d8617c91ee",
-                "reference": "b314e90540a6e5ab9162d0738c95f5d8617c91ee",
-                "shasum": ""
-            },
-            "require": {
-                "silverstripe/assets": "1.1.2@stable",
-                "silverstripe/config": "1.0.4@stable",
-                "silverstripe/framework": "4.1.2@stable",
-                "silverstripe/recipe-plugin": "^1.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.7"
-            },
-            "type": "silverstripe-recipe",
-            "extra": {
-                "project-files": [
-                    "mysite/*"
-                ],
-                "public-files": [
-                    ".htaccess",
-                    "web.config",
-                    "index.php",
-                    "install.php",
-                    "install-frameworkmissing.html"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "SilverStripe framework-only core recipe",
-            "homepage": "http://silverstripe.org",
-            "time": "2018-06-19T05:11:52+00:00"
-        },
-        {
-            "name": "silverstripe/recipe-plugin",
-            "version": "1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/silverstripe/recipe-plugin.git",
-                "reference": "88cd7ed3a0c07a0b24b70ee43d855488d7f1ac7e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/recipe-plugin/zipball/88cd7ed3a0c07a0b24b70ee43d855488d7f1ac7e",
-                "reference": "88cd7ed3a0c07a0b24b70ee43d855488d7f1ac7e",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.1"
-            },
-            "require-dev": {
-                "composer/composer": "^1.2"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "SilverStripe\\RecipePlugin\\RecipePlugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "SilverStripe\\RecipePlugin\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Damian Mooyman",
-                    "email": "damian@silverstripe.com"
-                }
-            ],
-            "description": "Helper plugin to install SilverStripe recipes",
-            "time": "2018-04-11T07:22:09+00:00"
-        },
-        {
             "name": "silverstripe/reports",
             "version": "4.1.2",
             "source": {
@@ -1819,6 +1724,70 @@
                 "siteconfig"
             ],
             "time": "2018-06-19T04:50:07+00:00"
+        },
+        {
+            "name": "silverstripe/staticpublishqueue",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silverstripe/silverstripe-staticpublishqueue.git",
+                "reference": "4c2143d38e428763aedb9ff0e22758de3f2d37cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-staticpublishqueue/zipball/4c2143d38e428763aedb9ff0e22758de3f2d37cb",
+                "reference": "4c2143d38e428763aedb9ff0e22758de3f2d37cb",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/cms": "^4",
+                "silverstripe/config": "^1",
+                "silverstripe/framework": "^4.0.2",
+                "silverstripe/versioned": "^1.0.2",
+                "symbiote/silverstripe-queuedjobs": "^4.0.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5",
+                "squizlabs/php_codesniffer": "^3"
+            },
+            "type": "silverstripe-vendormodule",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SilverStripe\\StaticPublishQueue\\": "src/",
+                    "SilverStripe\\StaticPublishQueue\\Test\\": "tests/php/"
+                },
+                "files": [
+                    "includes/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "include-path": [
+                "includes/"
+            ],
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Static publishing queue to create static versions of pages for enhanced performance and security",
+            "keywords": [
+                "cache",
+                "caching",
+                "html",
+                "performance",
+                "publishing",
+                "queue",
+                "security",
+                "silverstripe",
+                "static",
+                "static-cache",
+                "static-caching",
+                "static-publishing"
+            ],
+            "time": "2018-07-11T08:33:22+00:00"
         },
         {
             "name": "silverstripe/vendor-plugin",
@@ -1972,6 +1941,60 @@
                 "mailer"
             ],
             "time": "2018-01-23T07:37:21+00:00"
+        },
+        {
+            "name": "symbiote/silverstripe-queuedjobs",
+            "version": "4.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symbiote/silverstripe-queuedjobs.git",
+                "reference": "f6f67314dad8b90ca22b918de033257f189e3dcb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symbiote/silverstripe-queuedjobs/zipball/f6f67314dad8b90ca22b918de033257f189e3dcb",
+                "reference": "f6f67314dad8b90ca22b918de033257f189e3dcb",
+                "shasum": ""
+            },
+            "require": {
+                "asyncphp/doorman": "^3.0",
+                "silverstripe/admin": "^1",
+                "silverstripe/framework": "^4"
+            },
+            "replace": {
+                "silverstripe/queuedjobs": "self.version"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "silverstripe-vendormodule",
+            "autoload": {
+                "psr-4": {
+                    "Symbiote\\QueuedJobs\\": "src/",
+                    "Symbiote\\QueuedJobs\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Damian Mooyman",
+                    "email": "damian@silverstripe.com"
+                },
+                {
+                    "name": "Marcus Nyeholt",
+                    "email": "marcus@symbiote.com.au"
+                }
+            ],
+            "description": "A framework for defining and running background jobs in a queued manner",
+            "keywords": [
+                "jobs",
+                "silverstripe"
+            ],
+            "time": "2018-06-24T22:23:54+00:00"
         },
         {
             "name": "symfony/cache",
@@ -2372,6 +2395,114 @@
                 "mbstring",
                 "polyfill",
                 "portable",
+                "shim"
+            ],
+            "time": "2018-04-26T10:06:28+00:00"
+        },
+        {
+            "name": "symfony/polyfill-php56",
+            "version": "v1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php56.git",
+                "reference": "af98553c84912459db3f636329567809d639a8f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php56/zipball/af98553c84912459db3f636329567809d639a8f6",
+                "reference": "af98553c84912459db3f636329567809d639a8f6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/polyfill-util": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php56\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 5.6+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2018-04-26T10:06:28+00:00"
+        },
+        {
+            "name": "symfony/polyfill-util",
+            "version": "v1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-util.git",
+                "reference": "1a5ad95d9436cbff3296034fe9f8d586dce3fb3a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-util/zipball/1a5ad95d9436cbff3296034fe9f8d586dce3fb3a",
+                "reference": "1a5ad95d9436cbff3296034fe9f8d586dce3fb3a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Util\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony utilities for portability of PHP codes",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compat",
+                "compatibility",
+                "polyfill",
                 "shim"
             ],
             "time": "2018-04-26T10:06:28+00:00"
@@ -3807,9 +3938,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "silverstripe/recipe-cms": 0
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
