@@ -1,0 +1,10 @@
+---
+Name: myproject
+---
+SilverStripe\Core\Manifest\ModuleManifest:
+  project: app
+SilverStripe\Core\Injector\Injector:
+  SilverStripe\StaticPublishQueue\Publisher:
+    class: SilverStripe\StaticPublishQueue\Publisher\FilesystemPublisher
+    properties:
+      fileExtension: html
