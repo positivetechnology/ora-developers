@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     $MetaTags(false)
     <% require themedCSS('main.min') %>
-    <link rel="shortcut icon" href="themes/ora/images/favicon.ico" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
     <% if GoogleDataLayer %>
     <script>
       $GoogleDataLayer.RAW
