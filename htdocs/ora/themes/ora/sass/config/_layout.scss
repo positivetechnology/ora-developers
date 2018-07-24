@@ -1,0 +1,127 @@
+body {
+	max-width:1920px;
+	margin: 0 auto;
+
+	&.modal-open {
+		overflow: hidden;
+	}
+}
+
+%table {
+	@extend .table;
+	text-align: inherit;
+	background-color: transparent !important;
+	font-family: $font-family;
+
+	&[border="0"] {
+		* {
+			border: none !important;
+		}
+	}
+
+	&[border="1"] {
+		@extend .table-bordered;
+
+		* {
+			border-color: map-get($palette, black) !important;
+		}
+	}
+
+	th {
+		font-size: 18px;
+		text-align: inherit;
+	}
+
+	td {
+		text-align: inherit;
+	}
+}
+
+.wysiwyg {
+
+	h2 {
+		@include font($size: 35px, $weight: 900, $spacing: -0.9px, $colour: inherit);
+		line-height: 1;
+		margin: 0px 0px 26px;
+
+		@include respond(lg) {
+			font-size: 55px;
+		}
+	}
+
+	h3 {
+		@include font($size: 22px, $weight: 700, $spacing: -0.6px, $colour: inherit);
+		line-height: 1.08;
+		margin: 0px 0px 20px;
+	}
+
+	h4 {
+		@include font($size: 18px, $weight: 700, $spacing: -0.6px, $colour: inherit);
+		line-height: 1.08;
+		margin: 0px 0px 15px;
+	}
+
+	p {
+		@include font($family: $font-family--alt, $size: 12px, $weight: 400, $spacing: -0.2px, $colour: inherit);
+		line-height: 1.58;
+		margin: 0px 0px 15px;
+
+		@include respond(lg) {
+			font-size: 16px;
+			line-height: 1.69;
+		}
+
+		b {
+			font-weight: 700;
+		}
+
+		i {
+			font-style: italic;
+		}
+
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+	}
+
+	ul, ol {
+		list-style: none;
+		padding-left: 20px;
+		margin: 0px 0px 15px;
+
+		li {
+			margin: 0px 0px 5px;
+			line-height: 1.69;
+
+			p {
+				margin: 0px;
+				line-height: 1.69;
+				vertical-align: top;
+			}
+		}
+	}
+
+	ul {
+		li {
+			position: relative;
+
+			&:before {
+				content: '•';
+				vertical-align: top;
+				position: absolute;
+				top: -2px;
+				left: -15px;
+			}
+		}
+	}
+
+	ol {
+		list-style: decimal;
+	}
+
+	table {
+		@extend %table;
+	}
+
+}

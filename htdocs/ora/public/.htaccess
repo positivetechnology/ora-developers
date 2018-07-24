@@ -1,4 +1,5 @@
 ### SILVERSTRIPE START ###
+
 # Deny access to templates (but allow from localhost)
 <Files *.ss>
     Order deny,allow
@@ -32,44 +33,9 @@ ErrorDocument 500 /assets/error-500.html
 
     SetEnv HTTP_MOD_REWRITE On
     RewriteEngine On
-    RewriteBase '/public'
 
-    ## CONFIG FOR STATIC PUBLISHING
-	# Cached content - sub-pages (site in the root of a domain)
-	RewriteCond %{REQUEST_METHOD} ^GET|HEAD$
-	RewriteCond %{QUERY_STRING} ^$
-	RewriteCond %{REQUEST_URI} /(.*[^/])/?$
-	RewriteCond %{DOCUMENT_ROOT}/cache/%1.html -f
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteRule .* /cache/%1.html [L]
-
-	# Cached content - homepage (site in root of a domain)
-	RewriteCond %{REQUEST_METHOD} ^GET|HEAD$
-	RewriteCond %{QUERY_STRING} ^$
-	RewriteCond %{REQUEST_URI} ^/?$
-	RewriteCond %{DOCUMENT_ROOT}/cache/index.html -f
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteRule .* /cache/index.html [L]
-
-	# Config for site in a subdirectory
-	# (remove the following four rules if site is on root of a domain. E.g. test.com rather than test.com/my-site)
-	# Cached content - sub-pages (site in sub-directory)
-	RewriteCond %{REQUEST_METHOD} ^GET|HEAD$
-	RewriteCond %{QUERY_STRING} ^$
-	RewriteCond %{REQUEST_URI} /(.*[^/])/(.*[^/])/?$
-	RewriteCond %{DOCUMENT_ROOT}/%1/cache/%2.html -f
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteRule .* cache/%2.html [L]
-
-	# Cached content - homepage (site in sub-directory)
-	RewriteCond %{REQUEST_METHOD} ^GET|HEAD$
-	RewriteCond %{QUERY_STRING} ^$
-	RewriteCond %{REQUEST_URI} ^/(.*[^/])/?$
-	RewriteCond %{DOCUMENT_ROOT}/%1/cache/index.html -f
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteRule .* cache/index.html [L]
-
-	## DYNAMIC CONFIG
+    # Enable HTTP Basic authentication workaround for PHP running in CGI mode
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
     # Deny access to potentially sensitive files and folders
     RewriteRule ^vendor(/|$) - [F,L,NC]
