@@ -31,9 +31,10 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <% include Header %>
 <div role="main">
-	$Layout 
+	$Layout
 </div>
 <% include Footer %>
+
 
 <% require themedJavascript('mini/vendor.min') %>
 <% require themedJavascript('mini/main.min') %>
