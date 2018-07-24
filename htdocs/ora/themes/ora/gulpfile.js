@@ -43,7 +43,7 @@ gulp.task('sass', () => {
 
 // javascript lint task
 gulp.task('lint', () => {
-	return gulp.src(['./js/dev/**/*.js','!./js/dev/vendor/**'])
+	return gulp.src(['./javascript/dev/**/*.js','!./javascript/dev/vendor/**'])
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError());
@@ -52,8 +52,8 @@ gulp.task('lint', () => {
 // javascript task
 gulp.task('javascript', ['lint'], () => {
 
-	let scriptsPath = './js/dev';
-	let scriptDest = './js/mini';
+	let scriptsPath = './javascript/dev';
+	let scriptDest = './javascript/mini';
   //Create bundle
   if (bundler === null) {
     bundler = browserify(path.join(scriptsPath, 'main.js'), {debug: isDev}).transform(babel);
@@ -97,8 +97,8 @@ gulp.task('reload', () => {
 gulp.task('watch', () => {
 
 	gulp.watch('./sass/**/*.scss', ['sass']);
-	gulp.watch('./js/dev/**/*.js', ['javascript']);
-	gulp.watch(['./sass/**/*.css', './js/mini/**/*.js'], ['reload']);
+	gulp.watch('./javascript/dev/**/*.js', ['javascript']);
+	gulp.watch(['./sass/**/*.css', './javascript/mini/**/*.js'], ['reload']);
 
 });
 
@@ -123,7 +123,7 @@ gulp.task('browser-sync', () => {
 gulp.task('build', ['sass', 'javascript'], () => {
 
 	gulp.src(['./sass/*.css', '!./node_modules/**/*']).pipe(gulp.dest('./build/sass'));
-	gulp.src(['./js/mini/*.min.js', '!./node_modules/**/*']).pipe(gulp.dest('./build/js/mini'));
+	gulp.src(['./javascript/mini/*.min.js', '!./node_modules/**/*']).pipe(gulp.dest('./build/javascript/mini'));
 	gulp.src(['./**/*.php', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));
 	gulp.src(['./fonts/**/*', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build/fonts'));
 	gulp.src(['./**/*.jpg', './**/*.jpeg', './**/*.png', './**/*.ico', './**/*.svg', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));

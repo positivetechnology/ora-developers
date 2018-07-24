@@ -13,6 +13,10 @@
         "phpunit/phpunit": "^5.7"
     },
     "extra": {
+         "expose": [
+            "themes/ora/sass",
+            "themes/ora/javascript"
+          ],
         "project-files": [
             "mysite/_config/*",
             ".env.example"

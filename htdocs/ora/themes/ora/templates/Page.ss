@@ -35,8 +35,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <% include Footer %>
 
-<% require themedJavascript('js/mini/vendor.min') %>
-<% require themedJavascript('js/mini/main.min') %>
+<% require themedJavascript('mini/vendor.min') %>
+<% require themedJavascript('mini/main.min') %>
 
 </body>
 </html>
