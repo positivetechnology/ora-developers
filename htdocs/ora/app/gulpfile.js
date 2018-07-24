@@ -15,6 +15,7 @@ var uglify = require('gulp-uglify');
 var merge = require('merge-stream');
 var autoprefixer = require('gulp-autoprefixer');
 var eslint = require('gulp-eslint');
+var sourcemapsPath = '../../public/sourcemaps';
 
 //Environment
 var isDev = !util.env.build;
@@ -37,8 +38,8 @@ gulp.task('sass', function() {
 			includePaths : ['./sass']
 		}).on('error', sass.logError))
 		.pipe(autoprefixer({remove: false, browsers: ["last 100 versions"]}))
-		.pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
-		.pipe(gulp.dest('./sass'));
+		.pipe(gulpIf(isDev, sourcemaps.write('../../public/sourcemaps')))
+		.pipe(gulp.dest('../public/css'));
 
 });
 
@@ -54,7 +55,7 @@ gulp.task('lint', function(){
 gulp.task('javascript', ['lint'], function(){
 
 	var scriptsPath = './js/dev';
-	var scriptDest = './js/mini';
+	var scriptDest = '../public/javascript';
 	var dirs = getDirs(scriptsPath);
 
 	var tasks = dirs.map(function(folder) {
@@ -65,7 +66,7 @@ gulp.task('javascript', ['lint'], function(){
 			.pipe(gulp.dest(scriptDest))
 			.pipe(uglify())
 			.pipe(rename(folder + '.min.js'))
-			.pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
+			.pipe(gulpIf(isDev, sourcemaps.write(sourcemapsPath)))
 			.pipe(gulp.dest(scriptDest));
 
 	});
@@ -76,7 +77,7 @@ gulp.task('javascript', ['lint'], function(){
 		.pipe(gulp.dest(scriptDest))
 		.pipe(uglify())
 		.pipe(rename('main.min.js'))
-		.pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
+		.pipe(gulpIf(isDev, sourcemaps.write()))
 		.pipe(gulp.dest(scriptDest));
 
 	return merge(tasks, root);
@@ -94,8 +95,8 @@ gulp.task('reload', function() {
 gulp.task('watch', function() {
 
 	gulp.watch('./sass/**/*.scss', ['sass']);
-	gulp.watch('./js/dev/**/*.js', ['javascript']);
-	gulp.watch(['./sass/**/*.css', './js/mini/**/*.js'], ['reload']);
+	gulp.watch(['./js/dev/**/*.js'], ['javascript']);
+	gulp.watch(['../public/css/*.css', '../public/javascript/**/*.js'], ['reload']);
 
 });
 
@@ -104,9 +105,10 @@ gulp.task('browser-sync', function() {
 
 	browserSync({
 		port: 7001,
-		proxy: {
-            target: "127.0.0.1:8182"
-        },
+		server: "../public",
+		// proxy: {
+  //           target: "127.0.0.1:8182"
+  //       },
 		notify: false,
 		open: false,
 		ui: {
@@ -119,11 +121,11 @@ gulp.task('browser-sync', function() {
 // build task
 gulp.task('build', ['sass', 'javascript'], function() {
 
-	gulp.src(['./sass/*.css', '!./node_modules/**/*']).pipe(gulp.dest('./build/sass'));
-	gulp.src(['./js/mini/*.min.js', '!./node_modules/**/*']).pipe(gulp.dest('./build/js/mini'));
-	gulp.src(['./**/*.php', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));
-	gulp.src(['./fonts/**/*', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build/fonts'));
-	gulp.src(['./**/*.jpg', './**/*.jpeg', './**/*.png', './**/*.ico', './**/*.svg', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));
+	gulp.src(['./sass/*.css', '!./node_modules/**/*']).pipe(gulp.dest('../public/css'));
+	gulp.src(['./js/mini/*.min.js', '!./node_modules/**/*']).pipe(gulp.dest('../public/javascript/mini'));
+	//gulp.src(['./**/*.php', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));
+	gulp.src(['./fonts/**/*', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('../public/fonts'));
+	gulp.src(['./**/*.jpg', './**/*.jpeg', './**/*.png', './**/*.ico', './**/*.svg', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('../public'));
 
 });
 

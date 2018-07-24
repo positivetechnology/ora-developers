@@ -6,7 +6,8 @@
   "scripts": {
     "create-template": "node tools/create-template.js",
     "create-component": "node tools/create-component.js",
-    "build": "gulp build --build"
+    "build": "gulp build --build",
+    "gulp": "gulp"
   },
   "repository": {
     "type": "git",

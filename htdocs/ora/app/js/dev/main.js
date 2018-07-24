@@ -7,7 +7,7 @@ var App  = {
       // nothing
     }
     $(window).trigger('init.App');
-    console.log('working');
+    console.log('test');
   }
 };
 
