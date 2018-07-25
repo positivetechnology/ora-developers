@@ -1,5 +1,123 @@
-.header {}
 
-body {
-  border:2px solid green;
+.header {
+    position: fixed;
+    width: 100%;
+    height: 70px;
+    top: 0;
+    left: 0;
+    background-color: grey;
+    z-index: 1;
+}
+
+.header__bar {
+  position: fixed;
+  top: -70px;
+  width: 100%;
+  background-color: rgba(255,255,255,0.5);
+  left: 0;
+}
+
+.header__logo {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: auto;
+  height: 50px;
+  display: block;
+}
+
+.header__burger {
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+
+  span,
+  &:before,
+  &:after {
+    height: 2px;
+    width: 100%;
+    display: block;
+    background-color: black;
+    position: absolute;
+  }
+
+  &:before,
+  &:after {
+    content: ' ';
+  }
+
+  &:after {
+    top: 28px;
+  }
+
+  span{
+
+    &:nth-child(1) {
+      top: 7px;
+    }
+
+    &:nth-child(2) {
+      top: 14px;
+    }
+
+    &:nth-child(3) {
+      top: 21px;
+    }
+  }
+}
+
+.header__block {
+    position: absolute;
+    top: 70px;
+    width: 100%;
+    left: 0;
+    background-color: rgba(255,255,255,1);
+}
+
+.header__block__logo {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ul.header__nav {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
+
+  li.header__nav__item {
+    display: block;
+    text-transform: uppercase;
+    padding: 0 10px;
+
+    @include respond(md) {
+      display: inline-block;
+      position: relative;
+
+      &:after {
+        content: ' ';
+        height: 14px;
+        position: absolute;
+        background-color: black;
+        top: 50%;
+        transform: translateY(-7px);
+        right: 0;
+        width: 1px;
+      }
+
+      &:last-child:after {
+        content: none;
+      }
+    }
+  }
+
+  a {
+    color: black;
+  }
 }
