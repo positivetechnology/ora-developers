@@ -1,5 +1,4 @@
 // Import components
-
 $(document).ready(() => {
   try {
     document.createEvent('TouchEvent');
@@ -7,5 +6,6 @@ $(document).ready(() => {
   } catch (e) {
     // nothing
   }
+  console.log('testing!');
   // Initiate components
 });

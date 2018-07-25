@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     $MetaTags(false)
-    <% require themedCSS('sass/main') %>
+    <link rel="stylesheet" href="/css/main.css" />
     <link rel="shortcut icon" href="/images/favicon.ico" />
     <% if GoogleDataLayer %>
     <script>
@@ -31,12 +31,12 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <% include Header %>
 <div role="main">
-	$Layout 
+	$Layout
 </div>
 <% include Footer %>
 
-<% require themedJavascript('mini/vendor.min') %>
-<% require themedJavascript('mini/main.min') %>
+<script src="/javascript/vendor.min.js" /></script>
+<script src="/javascript/main.min.js" /></script>
 
 </body>
 </html>

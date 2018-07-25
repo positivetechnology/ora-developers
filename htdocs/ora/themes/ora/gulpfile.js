@@ -37,7 +37,7 @@ gulp.task('sass', () => {
 		}).on('error', sass.logError))
 		.pipe(autoprefixer({remove: false, browsers: ["last 100 versions"]}))
 		.pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
-		.pipe(gulp.dest('./sass'));
+		.pipe(gulp.dest('../../public/css'));
 
 });
 
@@ -53,34 +53,34 @@ gulp.task('lint', () => {
 gulp.task('javascript', ['lint'], () => {
 
 	let scriptsPath = './javascript/dev';
-	let scriptDest = './javascript/mini';
+	let scriptDest = '../../public/javascript';
   //Create bundle
   if (bundler === null) {
     bundler = browserify(path.join(scriptsPath, 'main.js'), {debug: isDev}).transform(babel);
   }
 
 	let vendor = gulp.src(path.join(scriptsPath, 'vendor', '/**/*.js'))
-              			.pipe(gulpIf(isDev, sourcemaps.init()))
-              			.pipe(concat('vendor.js'))
-              			.pipe(gulp.dest(scriptDest))
-              			.pipe(uglify())
-              			.pipe(rename('vendor.min.js'))
-              			.pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
-              			.pipe(gulp.dest(scriptDest));
+	.pipe(gulpIf(isDev, sourcemaps.init()))
+	.pipe(concat('vendor.js'))
+	.pipe(gulp.dest(scriptDest))
+	.pipe(uglify())
+	.pipe(rename('vendor.min.js'))
+	.pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
+	.pipe(gulp.dest(scriptDest));
 
   let app = bundler.bundle()
-                    .on('error', (err) => {
-                      console.error(err);
-                      this.emit('end');
-                    })
-                    .pipe(source('main.js'))
-                    .pipe(gulp.dest(scriptDest))
-                    .pipe(buffer())
-                    .pipe(gulpIf(isDev, sourcemaps.init({loadMaps: true})))
-                    .pipe(uglify())
-                    .pipe(rename('main.min.js'))
-                    .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
-                    .pipe(gulp.dest(scriptDest));
+  .on('error', (err) => {
+    console.error(err);
+    this.emit('end');
+  })
+  .pipe(source('main.js'))
+  .pipe(gulp.dest(scriptDest))
+  .pipe(buffer())
+  .pipe(gulpIf(isDev, sourcemaps.init({loadMaps: true})))
+  .pipe(uglify())
+  .pipe(rename('main.min.js'))
+  .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
+  .pipe(gulp.dest(scriptDest));
 
 	return merge(vendor, app);
 
@@ -98,18 +98,19 @@ gulp.task('watch', () => {
 
 	gulp.watch('./sass/**/*.scss', ['sass']);
 	gulp.watch('./javascript/dev/**/*.js', ['javascript']);
-	gulp.watch(['./sass/**/*.css', './javascript/mini/**/*.js'], ['reload']);
+	gulp.watch(['../../public/css/*.css', './javascript/dev/**/*.js'], ['reload']);
 
 });
 
 // browsersync task
 gulp.task('browser-sync', () => {
 
-	browserSync({
+  browserSync({
 		port: 7001,
+		//server: "../public",
 		proxy: {
-            target: "127.0.0.1:8182"
-        },
+        target: "127.0.0.1:8182"
+    },
 		notify: false,
 		open: false,
 		ui: {
@@ -117,16 +118,17 @@ gulp.task('browser-sync', () => {
 		}
 	});
 
+
 });
 
 // build task
 gulp.task('build', ['sass', 'javascript'], () => {
 
-	gulp.src(['./sass/*.css', '!./node_modules/**/*']).pipe(gulp.dest('./build/sass'));
-	gulp.src(['./javascript/mini/*.min.js', '!./node_modules/**/*']).pipe(gulp.dest('./build/javascript/mini'));
-	gulp.src(['./**/*.php', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));
-	gulp.src(['./fonts/**/*', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build/fonts'));
-	gulp.src(['./**/*.jpg', './**/*.jpeg', './**/*.png', './**/*.ico', './**/*.svg', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));
+	gulp.src(['./css/*.css', '!./node_modules/**/*']).pipe(gulp.dest('../../public/css'));
+	gulp.src(['./javascript/mini/*.min.js', '!./node_modules/**/*']).pipe(gulp.dest('../../public/javascript/mini'));
+	gulp.src(['./**/*.php', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('../../public'));
+	gulp.src(['./fonts/**/*', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('../../public/fonts'));
+	gulp.src(['./**/*.jpg', './**/*.jpeg', './**/*.png', './**/*.ico', './**/*.svg', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('../../public'));
 
 });
 
