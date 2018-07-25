@@ -7,10 +7,14 @@ htdocs/.env
 logs
 nbproject
 htdocs/nbproject
+htdocs/vendor
 silverstripe-cache
 silverstripe.log
 fulltextsearch-localsolr
+htdocs/vendor
 htdocs/resources
+htdocs/fulltextsearch-localsolr
 mysql
 application/htdocs/.editorconfig
 application/htdocs/.env.example
+node_modules
