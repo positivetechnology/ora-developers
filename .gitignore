@@ -17,3 +17,4 @@ htdocs/fulltextsearch-localsolr
 mysql
 application/htdocs/.editorconfig
 application/htdocs/.env.example
+node_modules
