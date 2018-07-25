@@ -1,7 +1,6 @@
 /silverstripe-cache/
 /.env
-/vendor/
-/themes/simple/
 /resources/
 /public/assets/
-/public/cache/
+/themes/ora/node_modules/
+/themes/ora/javascript/mini/

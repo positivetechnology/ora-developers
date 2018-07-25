@@ -1,0 +1,94 @@
+@mixin font($size: 14px, $family: $font-family, $weight: 400, $colour: map-get($palette, white), $spacing: normal, $height: 1.2) {
+	font-family: $family;
+	font-size: $size;
+	font-weight: $weight;
+	font-style: normal;
+	color: $colour;
+	letter-spacing: $spacing;
+	line-height: $height;
+}
+
+@mixin respond($size) {
+	@if ($size == xl or $size == lg or $size == md or $size == sm or $size == xs) {
+		@media screen and (min-width: map-get($grid-breakpoints, $size)) {
+			@content;
+		}
+	} @else {
+		@media screen and (min-width: $size) {
+			@content;
+		}
+	}
+}
+
+@mixin button($background: -1, $colour: -1, $hover: -1, $border:-1) {
+	padding: 11px 20px;
+	@include font($size: 14px, $weight: 700);
+	line-height: 1.2;
+	border-radius: 100px;
+	transition: background 150ms ease, color 150ms ease;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	&:focus {
+		outline: map-get($palette, squash) auto 5px;
+	}
+
+	@if ($background != -1) {
+		background: $background;
+	}
+	@if ($colour != -1) {
+		color: $colour;
+
+		&:hover {
+			color: $colour;
+		}
+	}
+	@if ($border != -1) {
+		border-color: $border;
+	}
+
+	@if ($hover != -1 and $background) {
+		@if ($background != -1) {
+			&:hover {
+				background: darken($background, 7%);
+			}
+		} @else {
+			&:hover {
+				opacity: 0.5;
+			}
+		}
+	} @else {
+		&:hover {
+			background: $background;
+		}
+	}
+}
+
+@mixin placeholder() {
+	&::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		@content;
+	}
+	&::-moz-placeholder { /* Firefox 19+ */
+		@content;
+	}
+	&:-ms-input-placeholder { /* IE 10+ */
+		@content;
+	}
+	&:-moz-placeholder { /* Firefox 18- */
+		@content;
+	}
+}
+
+%iconFont {
+	font-family: $font-family--icon !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,10 @@
+---
+Name: staticpublishqueue
+---
+SilverStripe\Core\Injector\Injector:
+  SilverStripe\StaticPublishQueue\Publisher:
+    class: SilverStripe\StaticPublishQueue\Publisher\FilesystemPublisher
+SilverStripe\CMS\Model\SiteTree:
+  extensions:
+    - SilverStripe\StaticPublishQueue\Extension\Engine\SiteTreePublishingEngine
+    - SilverStripe\StaticPublishQueue\Extension\Publishable\PublishableSiteTree
