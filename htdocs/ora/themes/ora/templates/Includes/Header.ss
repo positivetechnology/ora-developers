@@ -13,7 +13,7 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg" class="header__block__logo" alt="Ora Logo" />
     <ul class="header__nav">
       <li class="header__nav__item">
-        <a href="#home" data-scroll-link>About Us</a>
+        <a href="#about-us" data-scroll-link>About Us</a>
       </li>
       <li class="header__nav__item">
         <a href="#our-developments" data-scroll-link>Our developments</a>

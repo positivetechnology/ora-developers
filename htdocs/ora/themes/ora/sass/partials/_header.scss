@@ -153,7 +153,7 @@ $transition: all 600ms ease;
 
   @include respond(md) {
     position: absolute;
-    height: auto;
+    height: 0;
   }
 }
 
@@ -166,8 +166,10 @@ $transition: all 600ms ease;
   margin-bottom: 40px;
   opacity: 0;
   transition: $transition;
+  visibility: hidden;
 
   .header.is-open & {
+    visibility: visible;
     opacity: 1;
   }
 

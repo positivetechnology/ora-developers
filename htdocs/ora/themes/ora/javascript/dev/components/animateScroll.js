@@ -6,7 +6,7 @@ export default class Animate {
       component: '[data-animate-scroll]',
       items: 'section',
       animationTime: 1000,
-      delay: 500,
+      delay: 250,
       loadDelay: 250,
       easing: 'ease',
       mobile: false
@@ -25,8 +25,6 @@ export default class Animate {
   }
 
   bindEvents() {
-    $('body').addClass('scroll-loading');
-
     $(this.settings.items).map((i, item) => {
       $(item).attr('data-index', i + 1);
       $(item).css({
@@ -36,10 +34,9 @@ export default class Animate {
       });
     });
 
-    const scrollFunc = _.debounce((delta) => this.onScroll(delta), 20, true);
+    const scrollFunc = _.debounce((delta) => this.onScroll(delta), 50, true);
 
     $(document).bind('mousewheel DOMMouseScroll MozMousePixelScroll touchmove scroll', (e) => {
-      e.preventDefault();
       let delta = e.originalEvent.wheelDelta;
       scrollFunc(delta);
     });

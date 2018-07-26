@@ -10,10 +10,10 @@ class Toggle {
   }
 
   bindEvents() {
-    const evName = !$('body').hasClass('touch') ? 'click' : 'mouseover mouseout';
+    // const evName = !$('body').hasClass('touch') ? 'click' : 'mouseover mouseout';
     const $elem = $(this.sel.component);
     const $toggle = $elem.find(this.sel.toggle);
-    $toggle.on(evName, (e) => {
+    $toggle.on('click', (e) => {
       e.preventDefault();
       $elem.toggleClass('is-open');
     });
