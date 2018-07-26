@@ -1,3 +1,5 @@
+import Scroll from './components/pageScroll';
+import Toggle from './components/toggle';
 // Import components
 $(document).ready(() => {
   try {
@@ -6,6 +8,6 @@ $(document).ready(() => {
   } catch (e) {
     // nothing
   }
-  console.log('testing!');
-  // Initiate components
+  Scroll.init();
+  Toggle.init();
 });
