@@ -1,0 +1,51 @@
+.carousel-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+  text-align: center;
+  // needed from chrome glitch:
+  transform: translate3d(0,0,0);
+
+  .carousel-controls__item {
+    display: inline-block;
+    vertical-align: middle;
+    position: static;
+    margin: 0 7px;
+
+    &.carousel-control {
+      height: 40px;
+      width: 40px;
+      border: 2px solid white;
+      border-radius: 100%;
+      background-color: rgba(0,0,0,0.6);
+      transition: background-color 300ms ease;
+      opacity: 1;
+
+      &:hover {
+        background: black;
+      }
+
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        display: block;
+        text-align: center;
+        margin: 8px auto 0;
+        width: 11px;
+        transition: background-color 300ms ease;
+      }
+    }
+  }
+}
+
+.carousel-count {
+  color: white;
+}
+
+.carousel-item {
+  &--full-height {
+    height: 100vh;
+  }
+}

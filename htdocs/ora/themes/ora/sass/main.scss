@@ -6,6 +6,8 @@
 
 /* bootstrap */
 @import 'vendor/bootstrap/bootstrap';
+@import 'vendor/bootstrap/carousel';
+
 
 /* vendor */
 
@@ -23,3 +25,6 @@
 
 /* partials */
 @import 'partials/_all';
+
+/* headings */
+@import 'config/_headings';

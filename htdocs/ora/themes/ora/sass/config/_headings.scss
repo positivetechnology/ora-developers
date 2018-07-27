@@ -1,0 +1,207 @@
+
+$h1-size: 80px;
+$h2-size: 48px;
+$h3-size: 36px;
+$h4-size: 20px;
+$h5-size: 16px;
+$h6-size: 14px;
+
+$h1-medium-size: 70px;
+$h2-medium-size: 35px;
+$h3-medium-size: 24px;
+$h4-medium-size: 20px;
+$h5-medium-size: 16px;
+$h6-medium-size: 14px;
+
+$h1-mobile-size: 45px;
+$h2-mobile-size: 26px;
+$h3-mobile-size: 19px;
+$h4-mobile-size: 18px;
+$h5-mobile-size: 16px;
+$h6-mobile-size: 14px;
+
+$heading-bottom-margin: 0.4;
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: $brand-font-family;
+    line-height: 1.1;
+    font-weight: bold;
+    margin-bottom: $heading-bottom-margin * 16px;
+    display: block;
+    color: inherit;
+
+    &.collapse {
+        margin: 0;
+    }
+
+    &.upper, .upper {
+        text-transform: uppercase;
+    }
+
+    &.noupper, .noupper {
+        text-transform: none;
+    }
+
+
+    &.collapse {
+        margin: 0;
+    }
+
+    &.antialiased {
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+
+// Mobile heading sizes
+
+h1, .mimic-h1 {
+    font-size: $h1-mobile-size;
+    +h2, +.mimic-h2, +h3, +.mimic-h3, +h4, +.mimic-h4, +h5, +.mimic-h5, +h6, +.mimic-h6 {
+        &.subtitle {
+            margin-top: $h1-mobile-size * $heading-bottom-margin * -1;
+        }
+    }
+}
+
+h2, .mimic-h2 {
+    font-size: $h2-mobile-size;
+    +h3, +.mimic-h3, +h4, +.mimic-h4, +h5, +.mimic-h5, +h6, +.mimic-h6 {
+        &.subtitle {
+            margin-top: $h2-mobile-size * $heading-bottom-margin * -1;
+        }
+    }
+}
+
+
+h3, .mimic-h3 {
+    font-size: $h3-mobile-size;
+    +h4, +.mimic-h4, +h5, +.mimic-h5, +h6, +.mimic-h6 {
+        &.subtitle {
+            margin-top: $h3-mobile-size * $heading-bottom-margin * -1;
+        }
+    }
+}
+
+h4, .mimic-h4 {
+    font-size: $h4-mobile-size;
+    +h5, +.mimic-h5, +h6, +.mimic-h6 {
+        &.subtitle {
+            margin-top: $h4-mobile-size * $heading-bottom-margin * -1;
+        }
+    }
+}
+
+h5, .mimic-h5 {
+    font-size: $h5-mobile-size;
+    +h6, +.mimic-h6 {
+        &.subtitle {
+            margin-top: $h5-mobile-size * $heading-bottom-margin * -1;
+        }
+    }
+}
+
+// Medium heading sizes
+@include respond(md) {
+    h1, .mimic-h1 {
+        font-size: $h1-medium-size;
+        +h2, +.mimic-h2, +h3, +.mimic-h3, +h4, +.mimic-h4, +h5, +.mimic-h5, +h6, +.mimic-h6 {
+            &.subtitle {
+                margin-top: $h1-medium-size * $heading-bottom-margin * -1;
+            }
+        }
+    }
+
+    h2, .mimic-h2 {
+        font-size: $h2-medium-size;
+        +h3, +.mimic-h3, +h4, +.mimic-h4, +h5, +.mimic-h5, +h6, +.mimic-h6 {
+            &.subtitle {
+                margin-top: $h2-medium-size * $heading-bottom-margin * -1;
+            }
+        }
+    }
+
+
+    h3, .mimic-h3 {
+        font-size: $h3-medium-size;
+        +h4, +.mimic-h4, +h5, +.mimic-h5, +h6, +.mimic-h6 {
+            &.subtitle {
+                margin-top: $h3-medium-size * $heading-bottom-margin * -1;
+            }
+        }
+    }
+
+    h4, .mimic-h4 {
+        font-size: $h4-medium-size;
+        +h5, +.mimic-h5, +h6, +.mimic-h6 {
+            &.subtitle {
+                margin-top: $h4-medium-size * $heading-bottom-margin * -1;
+            }
+        }
+    }
+
+    h5, .mimic-h5 {
+        font-size: $h5-medium-size;
+        +h6, +.mimic-h6 {
+            &.subtitle {
+                margin-top: $h5-medium-size * $heading-bottom-margin * -1;
+            }
+        }
+    }
+}
+
+// Desktop heading sizes
+@include respond(lg) {
+  h1, .mimic-h1 {
+      font-size: $h1-size;
+      +h2, +.mimic-h2, +h3, +.mimic-h3, +h4, +.mimic-h4, +h5, +.mimic-h5, +h6, +.mimic-h6 {
+          &.subtitle {
+              margin-top: $h1-size * $heading-bottom-margin * -1;
+          }
+      }
+  }
+
+  h2, .mimic-h2 {
+      font-size: $h2-size;
+      +h3, +.mimic-h3, +h4, +.mimic-h4, +h5, +.mimic-h5, +h6, +.mimic-h6 {
+          &.subtitle {
+              margin-top: $h2-size * $heading-bottom-margin * -1;
+          }
+      }
+  }
+
+
+  h3, .mimic-h3 {
+      font-size: $h3-size;
+      +h4, +.mimic-h4, +h5, +.mimic-h5, +h6, +.mimic-h6 {
+          &.subtitle {
+              margin-top: $h3-size * $heading-bottom-margin * -1;
+          }
+      }
+  }
+
+  h4, .mimic-h4 {
+      font-size: $h4-size;
+      +h5, +.mimic-h5, +h6, +.mimic-h6 {
+          &.subtitle {
+              margin-top: $h4-size * $heading-bottom-margin * -1;
+          }
+      }
+  }
+
+  h5, .mimic-h5 {
+      font-size: $h5-size;
+      +h6, +.mimic-h6 {
+          &.subtitle {
+              margin-top: $h5-size * $heading-bottom-margin * -1;
+          }
+      }
+  }
+}
+
+.mimic-h1 {@extend h1}
+.mimic-h2 {@extend h2}
+.mimic-h3 {@extend h3}
+.mimic-h4 {@extend h4}
+.mimic-h5 {@extend h5}
+.mimic-h6 {@extend h6}

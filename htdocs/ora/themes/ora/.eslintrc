@@ -1,7 +1,9 @@
 /* Based on https://github.com/FreeCodeCamp/freecodecamp/blob/staging/.eslintrc */
 {
   "globals": {
-    "$": false
+    "$": false,
+    "pjs" : false,
+    "Modernizr" : false
   },
   "parserOptions": {
     "ecmaFeatures": {

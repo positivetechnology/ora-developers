@@ -96,7 +96,7 @@ gulp.task('reload', () => {
 // watch task
 gulp.task('watch', () => {
 
-	gulp.watch('./sass/**/*.scss', ['sass']);
+	gulp.watch('./sass/**/*', ['sass']);
 	gulp.watch('./javascript/dev/**/*.js', ['javascript']);
 	gulp.watch(['../../public/css/*.css', './javascript/dev/**/*.js'], ['reload']);
 

@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import AnimateScroll from './animateScroll';
 
 class Scroll {
@@ -9,7 +10,8 @@ class Scroll {
     };
     this._public = {
       moved: false,
-      loadedSections: []
+      loadedSections: [],
+      activeIndex: 1
     };
     this.init = this.init.bind(this);
     this.bindEvents = this.bindEvents.bind(this);
@@ -17,6 +19,7 @@ class Scroll {
     this.getIndex = this.getIndex.bind(this);
     this.lazyLoad = this.lazyLoad.bind(this);
     this.loadImages = this.loadImages.bind(this);
+    this.getActiveMq = this.getActiveMq.bind(this);
   }
 
   bindEvents() {
@@ -45,7 +48,12 @@ class Scroll {
     $(document).on('scrollChange', (data) => {
       _this.updateUrl(data.index);
       _this.lazyLoad(data.index);
+      this._public.activeIndex = data.index;
     });
+
+    $(window).on('resize', _.debounce(() => {
+      this.loadImages(this._public.activeIndex);
+    }, 100));
 
     // if scroll hasn't moved trigger lazyLoad
     if (typeof this.getIndex() === 'undefined') {
@@ -54,11 +62,11 @@ class Scroll {
 
     $link.on('click', (e) => {
       e.preventDefault();
-      const $target = $(e.target);
+      const $target = $(e.delegateTarget);
       let index = $target.data('scroll-link');
 
-      if (index.length === 0 && e.target.tagName === 'A') {
-        let target = e.target.hash;
+      if (index.length === 0 && e.delegateTarget.tagName === 'A') {
+        let target = e.delegateTarget.hash;
         index = $(`[data-url="${target}"]`).data('index');
         index = index === undefined ? 1 : index;
       }
@@ -122,15 +130,31 @@ class Scroll {
 
     $bgImages.map((i, image) => {
       const $image = $(image);
-      const src = $image.data('lazy-load');
       const type = $image.prop('tagName');
+      const src = $image.data('lazy-load');
+      let img = src;
+
+      if (typeof src === 'object') {
+        let activeMq = this.getActiveMq(window.pjs.mqs, src);
+
+        if (typeof activeMq === 'undefined' && src.default) {
+          img = src.default;
+        } else {
+          img = src[activeMq];
+        }
+        console.log('map', activeMq);
+      }
 
       if (type === 'IMG') {
-        $image.attr('src', src);
+        $image.attr('src', img);
       } else {
-        $image.css('background-image', `url(${src})`);
+        $image.css('background-image', `url(${img})`);
       }
     });
+  }
+
+  getActiveMq(mqs, settingsByMq) {
+    return _.last(_.intersection(_.keys(settingsByMq), mqs));
   }
 
   init() {
