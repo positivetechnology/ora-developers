@@ -1,21 +1,57 @@
-<div data-carousel class="carousel slide" id="our-developments-carousel">
+<div data-carousel='{"arrows" : "false"}'>
 
-  <div class="carousel-inner">
-    <div class="carousel-item carousel-item--full-height active" data-carousel-item="1">
-      <div data-lazy-load='{"default" : "https://source.unsplash.com/AB6z0-LIOX8/768x400", "md-only" : "https://source.unsplash.com/AB6z0-LIOX8/1152x600", "lg-up" : "https://source.unsplash.com/AB6z0-LIOX8/1920x1000"}' class="full-height__bg"></div>
+  <div data-carousel-items class="carousel slide gallery">
+
+    <div class="carousel-item carousel-item--full-height">
+      <div class="row">
+        <div class="col">
+          <div data-lazy-load="https://source.unsplash.com/RGsn47YSJ9U/1920x1000" class="gallery__bg gallery__bg--lg"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div data-lazy-load="https://source.unsplash.com/_tF9kFirZf0/1920x1000" class="gallery__bg"></div>
+        </div>
+        <div class="col">
+          <div class="gallery__content gallery__content--gold">
+            <h4 class="gallery__text">Space to breathe</h4>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="carousel-item carousel-item--full-height" data-carousel-item="2">
-      <div data-lazy-load="https://source.unsplash.com/_8rjlHwN4uk/1920x1000" class="full-height__bg"></div>
+      <div class="row">
+        <div class="col">
+          <div data-lazy-load="https://source.unsplash.com/Tcbrg_AhsQE/1920x1000" class="gallery__bg"></div>
+        </div>
+        <div class="col">
+          <div data-lazy-load="https://source.unsplash.com/VCNQiKPnlMU/1920x1000" class="gallery__bg"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="gallery__content">
+            <h4 class="gallery__text">At one with nature</h4>
+          </div>
+        </div>
+        <div class="col">
+          <div data-lazy-load="https://source.unsplash.com/njE-La8UrO0/1920x1000" class="gallery__bg"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div data-lazy-load="https://source.unsplash.com/-Ho_obgLFs4/1920x1000" class="gallery__bg"></div>
+        </div>
+        <div class="col">
+          <div data-lazy-load="https://source.unsplash.com/eGJg5iRGlg8/1920x1000" class="gallery__bg"></div>
+        </div>
+      </div>
     </div>
   </div>
-
   <div class="carousel-controls">
-    <a class="carousel-control-prev carousel-control carousel-controls__item" href="[data-carousel]" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    </a>
-    <div class="carousel-count carousel-controls__item" data-carousel-count></div>
-    <a class="carousel-control-next carousel-control carousel-controls__item" href="[data-carousel]" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    </a>
+    <button data-carousel-arrow-prev class="carousel-controls__item carousel-control carousel-control-prev-icon" aria-label="Previous" type="button">Previous</button>
+    <div data-carousel-count class="carousel-controls__item carousel-count"></div>
+    <button data-carousel-arrow-next class="carousel-controls__item carousel-control carousel-control-next-icon" aria-label="Next" type="button">Next</button>
   </div>
 </div>

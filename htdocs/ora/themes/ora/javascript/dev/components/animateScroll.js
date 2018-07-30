@@ -36,9 +36,33 @@ export default class Animate {
 
     const scrollFunc = _.debounce((delta) => this.onScroll(delta), 50, true);
 
-    $(document).bind('mousewheel DOMMouseScroll MozMousePixelScroll touchmove scroll', (e) => {
-      let delta = e.originalEvent.wheelDelta;
+    $(document).bind('mousewheel DOMMouseScroll wheel scroll', (e) => {
+      var delta;
+
+      switch (e.type) {
+      case 'wheel':
+        delta = e.originalEvent.deltaY < 0 ? 1 : -1;
+        break;
+      default:
+        delta = e.originalEvent.wheelDelta;
+      }
+
       scrollFunc(delta);
+    });
+
+    // Touch
+    var touchStart;
+    $(document).bind('touchstart', (e) => {
+      touchStart = e.originalEvent.touches[0].clientY;
+    });
+
+    $(document).bind('touchend', (e) => {
+      var touchEnd = e.originalEvent.changedTouches[0].clientY;
+      if (touchStart > touchEnd + 50) {
+        scrollFunc(-1);
+      } else if (touchStart < touchEnd - 50) {
+        scrollFunc(1);
+      }
     });
 
     setTimeout(() => { $('body').removeClass('scroll-loading'); }, this.settings.loadDelay);

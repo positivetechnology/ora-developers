@@ -68,7 +68,7 @@ class Scroll {
       if (index.length === 0 && e.delegateTarget.tagName === 'A') {
         let target = e.delegateTarget.hash;
         index = $(`[data-url="${target}"]`).data('index');
-        index = index === undefined ? 1 : index;
+        index = typeof index === 'undefined' ? 1 : index;
       }
 
       scroll.move(null, index);
@@ -90,7 +90,7 @@ class Scroll {
   updateUrl(index) {
     const $section = $(this.sel.component).find(`[data-index="${index}"]`);
     const url = $section.data('url');
-    window.location.hash = url !== undefined ? url : '';
+    window.location.hash = typeof url !== 'undefined' ? url : '';
     if (window.location.hash === '') {
       const cleanUrl = location.protocol + '//' + location.host + location.pathname;
       window.history.replaceState({}, document.title, cleanUrl);
@@ -142,7 +142,6 @@ class Scroll {
         } else {
           img = src[activeMq];
         }
-        console.log('map', activeMq);
       }
 
       if (type === 'IMG') {

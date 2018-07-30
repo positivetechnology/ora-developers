@@ -30,7 +30,6 @@ class Mq {
   }
 
   checkMedia() {
-    console.log('check media');
     this._public.timeout = false;
     let newMqs = [];
 
@@ -48,8 +47,6 @@ class Mq {
     if (added.length !== 0 || removed.length !== 0) {
       $(window).trigger('mq:change', [added, removed, newMqs]);
     }
-
-    console.log('new');
 
     pjs.mqs = newMqs;
   }

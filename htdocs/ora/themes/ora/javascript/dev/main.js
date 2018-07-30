@@ -2,7 +2,8 @@ import './shared/breakpoints';
 import Mq from './util/mq';
 import Scroll from './components/pageScroll';
 import Toggle from './components/toggle';
-import Carousel from './components/carousel';
+import SlickCarousel from './components/slickCarousel';
+import Video from './components/video';
 
 // Import components
 $(document).ready(() => {
@@ -15,5 +16,12 @@ $(document).ready(() => {
   Mq.init();
   Scroll.init();
   Toggle.init();
-  Carousel.init();
+  $('[data-carousel]').map((i, mod) => {
+    const slick = new SlickCarousel(mod);
+    slick.init();
+  });
+  $('[data-video]').map((i, mod) => {
+    const video = new Video(mod);
+    video.init();
+  });
 });
