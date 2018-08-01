@@ -1,6 +1,6 @@
 <div class="header" data-toggle data-header>
   <div class="header__bar">
-    <a href="#">
+    <a href="#home" data-scroll-link>
       <img src="/img/logo.png" class="header__logo" alt="Ora Logo" />
     </a>
   </div>

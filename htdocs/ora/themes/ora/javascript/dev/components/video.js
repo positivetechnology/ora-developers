@@ -10,7 +10,6 @@ class Video {
   }
 
   init() {
-    console.log('init', this.sel);
     this.sel.button.on('click', (e) => {
       e.preventDefault();
       this.sel.video.toggleClass('is-active');

@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import AnimateScroll from './animateScroll';
+// import AnimateScroll from './animateScroll';
 
 class Scroll {
   constructor() {
@@ -16,48 +16,79 @@ class Scroll {
     this.init = this.init.bind(this);
     this.bindEvents = this.bindEvents.bind(this);
     this.updateUrl = this.updateUrl.bind(this);
+    this.animateTop = this.animateTop.bind(this);
     this.getIndex = this.getIndex.bind(this);
     this.lazyLoad = this.lazyLoad.bind(this);
     this.loadImages = this.loadImages.bind(this);
     this.getActiveMq = this.getActiveMq.bind(this);
+    this.getClosestIndex = this.getClosestIndex.bind(this);
   }
 
   bindEvents() {
     const _this = this;
-    // const $elem = $(this.sel.component);
+    const $elem = $(this.sel.component);
     const $link = $(this.sel.link);
     const location = window.location.hash;
-    let animationTime = 1000;
-
-    const scroll = new AnimateScroll({
-      animationTime: animationTime,
-      component: this.sel.component,
-      items: this.sel.item
-    });
 
     window.onpopstate = () => {
       const url = window.location.hash;
       const index = $(`[data-url='${url}']`).data('index');
       if (index) {
-        scroll.move(null, index);
+        // this.animateTop(index);
       } else {
-        scroll.move(null, 1);
+        // this.animateTop(1);
       }
     };
 
-    $(document).on('scrollChange', (data) => {
-      _this.updateUrl(data.index);
-      _this.lazyLoad(data.index);
-      this._public.activeIndex = data.index;
+    // $(window).on('hashchange', (e) => {
+    //   console.log(e);
+    //   const url = window.location.hash;
+    //   const index = $(`[data-url='${url}']`).data('index');
+    //   if (index) {
+    //     this.animateTop(index);
+    //   } else {
+    //     this.animateTop(1);
+    //   }
+    // });
+
+    $elem.find('[data-section]').map((i, item) => {
+      $(item).attr('data-index', i + 1);
     });
+
+    $(document).on('mousewheel DOMMouseScroll wheel scroll', _.debounce(() => {
+      // let windowTop = $(window).scrollTop() + ($(window).height() / 2);
+      const $sections = $('[data-section]');
+      let windowBottom = $(window).scrollTop() + $(window).height();
+      let sections = [];
+
+      for (let section of $sections) {
+        let top = $(section).offset().top;
+        let height = $(section).height();
+        // let middle = top + height / 2;
+        let bottom = top + height;
+        // console.log('windowBottom: ', windowBottom, 'divBottom: ', bottom);
+        sections.push({elem: section, position: bottom});
+      }
+
+      const active = this.getClosestIndex(windowBottom, sections);
+      const index = $(active.elem).data('index');
+
+      _this.updateUrl(index);
+      _this.lazyLoad(index);
+      this._public.activeIndex = index;
+    }, 50, false));
 
     $(window).on('resize', _.debounce(() => {
       this.loadImages(this._public.activeIndex);
-    }, 100));
+    }, 10));
+
+    const currentIndex = this.getIndex();
 
     // if scroll hasn't moved trigger lazyLoad
-    if (typeof this.getIndex() === 'undefined') {
+    if (typeof currentIndex === 'undefined') {
       this.lazyLoad(1);
+    } else {
+      this.lazyLoad(currentIndex);
     }
 
     $link.on('click', (e) => {
@@ -71,13 +102,23 @@ class Scroll {
         index = typeof index === 'undefined' ? 1 : index;
       }
 
-      scroll.move(null, index);
+      $('[data-header]').removeClass('is-open');
+
+      this.updateUrl(index);
+      this.animateTop(index);
     });
 
     if (location.length > 0) {
       const index = this.getIndex();
-      scroll.move(null, index, 0);
+      this.animateTop(index);
     }
+  }
+
+  animateTop(index) {
+    const $section = $(this.sel.component).find(`[data-index="${index}"]`);
+    $('html, body').animate({
+      scrollTop: $section.offset().top
+    }, 700);
   }
 
   getIndex() {
@@ -89,12 +130,20 @@ class Scroll {
 
   updateUrl(index) {
     const $section = $(this.sel.component).find(`[data-index="${index}"]`);
-    const url = $section.data('url');
-    window.location.hash = typeof url !== 'undefined' ? url : '';
-    if (window.location.hash === '') {
-      const cleanUrl = location.protocol + '//' + location.host + location.pathname;
-      window.history.replaceState({}, document.title, cleanUrl);
-    }
+    let url = $section.data('url');
+    url = typeof url !== 'undefined' ? url : '';
+
+    window.location.hash = url;
+
+    // window.history.pushState({}, document.title, url);
+
+    // if (window.location.hash === '') {
+    //   const cleanUrl = location.protocol + '//' + location.host + location.pathname;
+    //   window.history.replaceState({}, document.title, cleanUrl);
+    // }
+
+    $('body')[0].className = $('body')[0].className.replace(/\bviewing-page-\d.*?\b/g, '');
+    $('body').addClass('viewing-page-' + index);
   }
 
   lazyLoad(index) {
@@ -152,6 +201,22 @@ class Scroll {
     });
   }
 
+  getClosestIndex(windowPos, array) {
+    var i = 0;
+    var minDiff = 1000;
+    var ans;
+    for (i in array) {
+      if (array.hasOwnProperty(i)) {
+        var m = Math.abs(windowPos - array[i].position);
+        if (m < minDiff) {
+          minDiff = m;
+          ans = array[i];
+        }
+      }
+    }
+    return ans;
+  }
+
   getActiveMq(mqs, settingsByMq) {
     return _.last(_.intersection(_.keys(settingsByMq), mqs));
   }
@@ -161,4 +226,5 @@ class Scroll {
     this.bindEvents();
   }
 }
+
 export default new Scroll();

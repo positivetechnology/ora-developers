@@ -1,4 +1,4 @@
-<div data-carousel='{"arrows" : "false"}'>
+<div class="gallery-wrapper" data-carousel='{"arrows" : "false"}'>
 
   <div data-carousel-items class="carousel slide gallery">
 

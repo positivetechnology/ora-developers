@@ -1,3 +1,13 @@
+.gallery-wrapper {
+  transform: translate3d(0,0,0);
+  overflow: hidden;
+  transition: all 1000ms ease;
+  transform-style: preserve-3d;
+
+  body:not(.viewing-page-4) & {
+    transform: translate3d(200px, 200px, 0);
+  }
+}
 .gallery {
 
   .row {
