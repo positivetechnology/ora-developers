@@ -1,4 +1,5 @@
 import _ from 'underscore';
+// import Rellax from 'Rellax';
 // import AnimateScroll from './animateScroll';
 
 class Scroll {
@@ -22,6 +23,33 @@ class Scroll {
     this.loadImages = this.loadImages.bind(this);
     this.getActiveMq = this.getActiveMq.bind(this);
     this.getClosestIndex = this.getClosestIndex.bind(this);
+    this.checkViewport = this.checkViewport.bind(this);
+  }
+
+  checkViewport() {
+    var win = $(window);
+    var viewport = {
+      top: win.scrollTop(),
+      left: win.scrollLeft()
+    };
+
+    viewport.right = viewport.left + win.width();
+    viewport.bottom = viewport.top + win.height();
+
+    const $sections = $('[data-section]');
+
+    for (let section of $sections) {
+      var bounds = $(section).offset();
+      bounds.right = bounds.left + $(section).outerWidth();
+      bounds.bottom = bounds.top + $(section).outerHeight();
+
+      var bound = (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+      if (bound) {
+        $(section).addClass('active');
+      } else {
+        $(section).removeClass('active');
+      }
+    }
   }
 
   bindEvents() {
@@ -29,6 +57,14 @@ class Scroll {
     const $elem = $(this.sel.component);
     const $link = $(this.sel.link);
     const location = window.location.hash;
+
+    // var relax = new Rellax('.full-height__section', {
+    //   center: false,
+    //   round: true,
+    //   vertical: true,
+    //   horizontal: false
+    // });
+    // console.log(relax);
 
     window.onpopstate = () => {
       const url = window.location.hash;
@@ -55,7 +91,9 @@ class Scroll {
       $(item).attr('data-index', i + 1);
     });
 
-    $(document).on('mousewheel DOMMouseScroll wheel scroll', _.debounce(() => {
+    $(document).on('mousewheel DOMMouseScroll wheel scroll resize', _.debounce(() => {
+      this.checkViewport();
+
       // let windowTop = $(window).scrollTop() + ($(window).height() / 2);
       const $sections = $('[data-section]');
       let windowBottom = $(window).scrollTop() + $(window).height();

@@ -40,6 +40,7 @@
     "jimp": "^0.2.28",
     "merge-stream": "^1.0.1",
     "readline-sync": "^1.4.7",
+    "rellax": "^1.6.2",
     "slick-carousel": "^1.8.1",
     "underscore": "^1.9.1",
     "vinyl-buffer": "^1.0.1",
