@@ -1,5 +1,5 @@
 .full-height-wrapper {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -17,6 +17,11 @@
 .full-height__section {
   width: 100%;
   height: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &--gallery {
     transform: translate3d(0,0,0);
@@ -44,10 +49,10 @@
   /*Need for text glitch*/
   z-index: -1;
 
-  body:not(.viewing-page-1):not(.scroll-loading) & {
-      &--page-1 {
-        transform: translate3d(0, 100%, 0);
-      }
-  }
+  // body:not(.viewing-page-1):not(.scroll-loading) & {
+  //     &--page-1 {
+  //       transform: translate3d(0, 100%, 0);
+  //     }
+  // }
 
 }

@@ -1,21 +1,28 @@
-.homepage__content {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%) scale(1);
-  margin: auto;
+.homepage {
+  // position: relative;
+  // left: 0;
+  // right: 0;
+  // top: 50%;
+  // transform: translateY(-50%) scale(1);
+  // margin: auto;
+  // text-align: center;
+  // transition: all 800ms ease;
   text-align: center;
-  transition: all 800ms ease;
+  padding-top: 70px;
+  padding-bottom: 20px;
+
+}
+
+.homepage__content {
 
   a {
     display: inline-block;
   }
 
-  body:not(.viewing-page-1) &{
-    transform: scale(0.7) translateY(-150%);
-    opacity: 0.5;
-  }
+  // body:not(.viewing-page-1) &{
+  //   transform: scale(0.7) translateY(-150%);
+  //   opacity: 0.5;
+  // }
 }
 
 .homepage__logo {

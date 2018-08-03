@@ -27,11 +27,11 @@ export default class Animate {
   bindEvents() {
     $(this.settings.items).map((i, item) => {
       $(item).attr('data-index', i + 1);
-      $(item).css({
-        'position': 'absolute',
-        'top': `${i}00%`,
-        'left': '0px'
-      });
+      // $(item).css({
+      //   'position': 'relative',
+      //   'top': `${i}00%`,
+      //   'left': '0px'
+      // });
     });
 
     const scrollFunc = _.debounce((delta) => this.onScroll(delta), 50, true);
@@ -87,6 +87,8 @@ export default class Animate {
   move(direction, index, animate) {
     const animationTime = typeof animate !== 'undefined' ? animate : this.settings.animationTime;
 
+    console.log(animationTime);
+
     $('[data-header]').removeClass('is-open');
 
     if (this._public.pageLength < index) {
@@ -110,16 +112,16 @@ export default class Animate {
     $('body')[0].className = $('body')[0].className.replace(/\bviewing-page-\d.*?\b/g, '');
     $('body').addClass('viewing-page-' + this._public.activeIndex);
 
-    $(this.settings.component).css({
-      '-webkit-transform': 'translate3d(0, ' + this._public.position + '%, 0)',
-      '-webkit-transition': 'all ' + animationTime + 'ms ' + this.settings.easing,
-      '-moz-transform': 'translate3d(0, ' + this._public.position + '%, 0)',
-      '-moz-transition': 'all ' + animationTime + 'ms ' + this.settings.easing,
-      '-ms-transform': 'translate3d(0, ' + this._public.position + '%, 0)',
-      '-ms-transition': 'all ' + animationTime + 'ms ' + this.settings.easing,
-      'transform': 'translate3d(0, ' + this._public.position + '%, 0)',
-      'transition': 'all ' + animationTime + 'ms ' + this.settings.easing
-    });
+    // $(this.settings.component).css({
+    //   '-webkit-transform': 'translate3d(0, ' + this._public.position + '%, 0)',
+    //   '-webkit-transition': 'all ' + animationTime + 'ms ' + this.settings.easing,
+    //   '-moz-transform': 'translate3d(0, ' + this._public.position + '%, 0)',
+    //   '-moz-transition': 'all ' + animationTime + 'ms ' + this.settings.easing,
+    //   '-ms-transform': 'translate3d(0, ' + this._public.position + '%, 0)',
+    //   '-ms-transition': 'all ' + animationTime + 'ms ' + this.settings.easing,
+    //   'transform': 'translate3d(0, ' + this._public.position + '%, 0)',
+    //   'transition': 'all ' + animationTime + 'ms ' + this.settings.easing
+    // });
 
     $.event.trigger({
       type: 'scrollChange',
