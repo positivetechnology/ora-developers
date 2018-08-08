@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <div class="full-height__section" data-section data-url="#our-developments" data-rellax-speed="6">
+    <div class="full-height__section full-height__section--carousel" data-section data-url="#our-developments" data-rellax-speed="6">
       <div data-carousel='{"arrows" : false}'>
         <div data-carousel-items class="carousel slide">
           <div class="carousel-item carousel-item--full-height" data-carousel-item="1">
@@ -60,7 +60,7 @@
         </div>
       </div>
     </div>
-    <div class="full-height__section full-height__section--bg-white" data-section data-url="#gallery" data-rellax-speed="6">
+    <div class="full-height__section full-height__section--bg-white full-height__section--carousel" data-section data-url="#gallery" data-rellax-speed="6">
       <% include CarouselGrid %>
     </div>
   </div>

@@ -27,9 +27,8 @@ class Scroll {
   }
 
   checkViewport() {
-    const $sections = $('[data-section]');
-    let win = $(window);
-    let viewport = {
+    var win = $(window);
+    var viewport = {
       top: win.scrollTop(),
       left: win.scrollLeft()
     };
@@ -37,12 +36,14 @@ class Scroll {
     viewport.right = viewport.left + win.width();
     viewport.bottom = viewport.top + win.height();
 
+    const $sections = $('[data-section]');
+
     for (let section of $sections) {
       var bounds = $(section).offset();
       bounds.right = bounds.left + $(section).outerWidth();
       bounds.bottom = bounds.top + $(section).outerHeight();
 
-      let bound = (bounds.top + 100 <= viewport.bottom && bounds.bottom >= viewport.bottom);
+      var bound = (bounds.top + 100 <= viewport.bottom && bounds.bottom >= viewport.bottom);
 
       // var bound = (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
       if (bound && !$(section).hasClass('active')) {
@@ -62,58 +63,51 @@ class Scroll {
     const $elem = $(this.sel.component);
     const $link = $(this.sel.link);
     const location = window.location.hash;
-    const currentIndex = this.getIndex();
-    const win = $(window);
 
-    // On scroll update active elem and body class?
-    $(document).on('mousewheel DOMMouseScroll wheel scroll resize', _.debounce(() => {
-      const $sections = $('[data-section]');
-      const viewport = {
-        top: win.scrollTop(),
-        left: win.scrollLeft()
-      };
-
-      viewport.bottom = viewport.top + win.height();
-      var index = 1;
-
-      for (let section of $sections) {
-        // If top of section is in window viewport
-        var bounds = $(section).offset();
-        bounds.right = bounds.left + $(section).outerWidth();
-        bounds.bottom = bounds.top + $(section).outerHeight();
-
-        var bound = (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom <= bounds.top || viewport.top >= bounds.bottom));
-
-        if (bound) {
-          index = $(section).data('index');
-        }
-      }
-
-      this.updateUrl(index);
-      this.lazyLoad(index);
-      this._public.activeIndex = index;
-    }, 50, false));
-
-    // Animate on back and forward buttons
     window.onpopstate = () => {
       const url = window.location.hash;
       const index = $(`[data-url='${url}']`).data('index');
       if (index) {
-        this.animateTop(index);
+        // this.animateTop(index);
       } else {
-        this.animateTop(1);
+        // this.animateTop(1);
       }
     };
 
-    // Add index attribute
     $elem.find('[data-section]').map((i, item) => {
       $(item).attr('data-index', i + 1);
     });
 
-    // Reload images on resize
+    $(document).on('mousewheel DOMMouseScroll wheel scroll resize', _.debounce(() => {
+      this.checkViewport();
+
+      // let windowTop = $(window).scrollTop() + ($(window).height() / 2);
+      const $sections = $('[data-section]');
+      // let windowBottom = $(window).scrollTop() + $(window).height();
+      let sections = [];
+
+      for (let section of $sections) {
+        let top = $(section).offset().top;
+        let height = $(section).height();
+        // let middle = top + height / 2;
+        let bottom = top + height;
+        // console.log('windowBottom: ', windowBottom, 'divBottom: ', bottom);
+        sections.push({elem: section, position: bottom});
+      }
+
+      // const active = this.getClosestIndex(windowBottom, sections);
+      // const index = $(active.elem).data('index');
+
+      // _this.updateUrl(index);
+      // _this.lazyLoad(index);
+      // this._public.activeIndex = index;
+    }, 50, false));
+
     $(window).on('resize', _.debounce(() => {
       this.loadImages(this._public.activeIndex);
     }, 10));
+
+    const currentIndex = this.getIndex();
 
     // if scroll hasn't moved trigger lazyLoad
     if (typeof currentIndex === 'undefined') {
@@ -122,7 +116,6 @@ class Scroll {
       this.lazyLoad(currentIndex);
     }
 
-    // On link click update url and animate
     $link.on('click', (e) => {
       e.preventDefault();
       const $target = $(e.delegateTarget);
